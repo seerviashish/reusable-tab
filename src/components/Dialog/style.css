@@ -1,0 +1,27 @@
+.dialog-form {
+  color: #423e3e;
+  font-size: 1.3rem;
+  font-weight: 500;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column;
+  max-width: 250px;
+}
+
+h6 {
+  margin: 16px 0;
+}
+
+label {
+  display: flex;
+  color: grey;
+  font-weight: 500;
+}
+input {
+  width: 100%;
+}
+
+button {
+  margin-top: 16px;
+  margin-right: 16px;
+}

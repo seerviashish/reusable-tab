@@ -16,6 +16,16 @@
   text-align: center;
 }
 
+.tab-item:hover {
+  cursor: pointer;
+}
+
+.tab-item:hover .tab-clear-button,
+.tab-item:hover .tab-clear-button svg {
+  visibility: unset;
+  fill: #494949;
+}
+
 .tab-button {
   display: inline-flex;
   width: max-content;
@@ -60,9 +70,12 @@
   margin: 0 0 0 8px;
   padding: 0;
   border: 0;
+  height: 18px;
+  width: 18px;
   background-color: #f3f3f3;
   cursor: pointer;
   position: relative;
+  visibility: hidden;
 }
 
 .tab-clear-button svg {
@@ -71,4 +84,8 @@
   position: absolute;
   top: -10px;
   fill: #818181;
+}
+
+.hidden {
+  visibility: hidden;
 }
