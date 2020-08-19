@@ -7,12 +7,13 @@ import Dialog from "./components/Dialog/dialog";
 class App extends React.Component {
   state = {
     dialog: false,
+    dialogWarn: false,
     currentTabIndex: 0,
     tabs: ["Tab 1", "Tab 2", "Tab 3"],
   };
 
   handleDialogClose = (e) => {
-    this.setState({ dialog: false });
+    this.setState({ dialog: false, dialogWarn: false, warnMessage: "" });
   };
 
   handleDialogOpen = (e) => {
@@ -28,7 +29,12 @@ class App extends React.Component {
           dialog: false,
         };
       }
-      return { ...prevState, dialog: false };
+      return {
+        ...prevState,
+        dialog: false,
+        dialogWarn: true,
+        warnMessage: "User are only allowed to create maximum 10 tabs!",
+      };
     });
   };
 
@@ -62,10 +68,17 @@ class App extends React.Component {
 
   handleRemoveTab = (tabIndex) => {
     this.setState((prevState) => {
-      const newTabs = this.removeAtIndex(prevState.tabs, tabIndex);
+      if (prevState.tabs.length > 1) {
+        const newTabs = this.removeAtIndex(prevState.tabs, tabIndex);
+        return {
+          ...prevState,
+          tabs: [...newTabs],
+        };
+      }
       return {
         ...prevState,
-        tabs: [...newTabs],
+        dialogWarn: true,
+        warnMessage: "Tab should have at least one tab.",
       };
     });
   };
@@ -80,7 +93,13 @@ class App extends React.Component {
   };
 
   render() {
-    const { tabs, currentTabIndex, dialog } = this.state;
+    const {
+      tabs,
+      currentTabIndex,
+      dialog,
+      dialogWarn,
+      warnMessage,
+    } = this.state;
     return (
       <div>
         <header className="App-header">
@@ -97,16 +116,29 @@ class App extends React.Component {
           onPrev={this.handlePrev}
           onAdd={this.handleDialogOpen}
         />
-        <TabContent>
-          <section>
-            <h2>Tab 1 Content</h2>
-          </section>
-        </TabContent>
+        {tabs.map((tabs, index) => {
+          return (
+            <TabContent key={index} value={currentTabIndex} index={index}>
+              <section className="tab-section">
+                <h2>Tab Name - {tabs}</h2>
+              </section>
+            </TabContent>
+          );
+        })}
         {dialog && (
           <Dialog
             title="Add Tab"
+            type="form"
             onCancel={this.handleDialogClose}
             onCreate={this.handleDialogCreate}
+          />
+        )}
+        {dialogWarn && (
+          <Dialog
+            title="Warning!"
+            type="warn"
+            onCancel={this.handleDialogClose}
+            warnMessage={warnMessage}
           />
         )}
       </div>

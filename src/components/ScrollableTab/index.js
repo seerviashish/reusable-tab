@@ -16,6 +16,8 @@ const ScrollableTab = (props) => {
     onAdd,
   } = props;
 
+  const scrollItemRef = React.useRef(null);
+
   const handleOnSelect = (tabId) => (e) => {
     onSelect(tabId);
   };
@@ -25,17 +27,31 @@ const ScrollableTab = (props) => {
     onRemove(tabId);
   };
 
+  const handleScroll = (direction) => (e) => {
+    if (direction === "right") {
+      if (scrollItemRef && scrollItemRef.current) {
+        scrollItemRef.current.scrollLeft += 100;
+      }
+      onNext();
+    } else {
+      if (scrollItemRef && scrollItemRef.current) {
+        scrollItemRef.current.scrollLeft -= 100;
+      }
+      onPrev();
+    }
+  };
+
   return (
     <div className="tab-bar">
       <button
         className={`tab-action-button ${
           selectedTabIndex === 0 ? "hidden" : ""
         }`}
-        onClick={onPrev}
+        onClick={handleScroll("left")}
       >
         <LeftIcon />
       </button>
-      <div className="tab-container">
+      <div className="tab-container" ref={scrollItemRef}>
         {tabs.map((tab, index) => {
           return (
             <div
@@ -66,7 +82,7 @@ const ScrollableTab = (props) => {
         className={`tab-action-button ${
           selectedTabIndex === tabs.length - 1 ? "hidden" : ""
         }`}
-        onClick={onNext}
+        onClick={handleScroll("right")}
       >
         <RightIcon />
       </button>
