@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab Content Component Test should render tab content component. 1`] = `
+"<main class=\\"tab-content\\">
+  <section class=\\"tab-section\\">
+    <h2>Tab Name - This is content of tab</h2>
+  </section>
+</main>"
+`;

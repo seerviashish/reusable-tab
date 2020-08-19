@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog Component Test should render dialog dialog form. 1`] = `
+"<dialog class=\\"dialog-form\\" data-testid=\\"dialog-form\\">
+  <h6 data-testid=\\"dialog-title\\">Add Tab</h6>
+  <div><label data-testid=\\"label\\" for=\\"tabName\\">Enter tab name.</label><input data-testid=\\"input\\" type=\\"text\\" id=\\"tabName\\" name=\\"tabName\\" value=\\"\\"><button data-testid=\\"cancel-btn\\">Cancel</button><button data-testid=\\"create-btn\\">Create</button></div>
+</dialog>"
+`;
+
+exports[`Dialog Component Test should render dialog warning message. 1`] = `
+"<dialog class=\\"dialog-form\\" data-testid=\\"dialog-form\\">
+  <h6 data-testid=\\"dialog-title\\">Warning!</h6>
+  <div>
+    <p data-testid=\\"warn-message\\" style=\\"color: red;\\">This is warning message!</p><button data-testid=\\"cancel-btn\\">Close</button>
+  </div>
+</dialog>"
+`;

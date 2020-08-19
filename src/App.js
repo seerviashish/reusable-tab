@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import ScrollableTab from "./components/ScrollableTab";
 import TabContent from "./components/TabContent";
-import Dialog from "./components/Dialog/dialog";
+import Dialog from "./components/Dialog";
 
 class App extends React.Component {
   state = {
